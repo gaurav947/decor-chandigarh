@@ -5,137 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unexpected Decoration, Chandigarh</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #fff8f0;
-        }
-        header {
-            background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
-            color: #fff;
-            padding: 30px 0 20px 0;
-            text-align: center;
-        }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(255,126,95,0.12);
-            padding: 30px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        h2 {
-            color: #ff7e5f;
-            margin-top: 0;
-        }
-        .contact-btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 28px;
-            background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.2s;
-        }
-        .contact-btn:hover {
-            background: #ff7e5f;
-        }
-        .accordion {
-            margin-top: 30px;
-        }
-        .accordion-item {
-            margin-bottom: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(255,126,95,0.10);
-            background: #fff3e6;
-        }
-        .accordion-btn {
-            width: 100%;
-            text-align: left;
-            padding: 16px;
-            font-size: 1.1rem;
-            background: #ffe0cc;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            border-radius: 8px 8px 0 0;
-            transition: background 0.2s;
-            color: #ff7e5f;
-            font-family: Arial, sans-serif;
-            font-weight: normal;
-        }
-        .accordion-btn:hover {
-            background: #ffd1b3;
-        }
-        .accordion-content {
-            display: none;
-            padding: 16px;
-            border-top: 1px solid #ffd1b3;
-            background: #fff;
-            border-radius: 0 0 8px 8px;
-        }
-        .accordion-content ul {
-            list-style-type: square;
-            padding-left: 18px;
-            margin: 0;
-        }
-        .accordion-content ul li {
-            padding: 6px 0;
-            border-bottom: 1px solid #ffe0cc;
-            color: #444;
-            font-size: 1rem;
-        }
-        .accordion-content ul li:last-child {
-            border-bottom: none;
-        }
-        .icon {
-            float: right;
-            font-size: 1.2em;
-            transition: transform 0.2s;
-            color: #ff7e5f;
-        }
-        @media (max-width: 900px) {
-            .container {
-                max-width: 95vw;
-                padding: 18px;
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-        }
-        @media (max-width: 600px) {
-            header {
-                padding: 18px 0 12px 0;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-            .container {
-                padding: 10px;
-                border-radius: 8px;
-            }
-            .accordion-btn {
-                padding: 12px;
-                font-size: 1rem;
-                border-radius: 8px 8px 0 0;
-            }
-            .accordion-content {
-                
-                padding: 10px;
-                border-radius: 0 0 8px 8px;
-            }
-            .contact-btn {
-                padding: 10px 18px;
-                font-size: 0.95rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -143,8 +13,28 @@
         <h1 style="display:inline-block; vertical-align:middle; margin:0; padding: 0">Unexpected Decoration, Chandigarh</h1>
         <p style="margin-top:8px; padding: 0">Beautiful decorations for every occasion</p>
     </header>
-    <div class="container">
-        <h2>Our Packages</h2>
+    <nav class="main-navbar">
+        <ul>
+            <li class="nav-item nav-active" id="nav-surprises" onclick="showPage('surprises')">Surprises</li>
+            <li class="nav-item" id="nav-decorations" onclick="showPage('decorations')">Decorations</li>
+        </ul>
+    </nav>
+    <div class="container" id="surprises-page">
+        <div class="package-header-row">
+            <h2 style="margin:0;">Our Packages</h2>
+            <div class="dropdown-wrapper" id="main-lang-wrapper">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="pa">ਪੰਜਾਬੀ</option>
+                </select>
+                <span class="dropdown-arrow">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                        <path d="M6 8L10 12L14 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </div>
+        </div>
         <div class="accordion">
             <div class="accordion-item">
                 <button class="accordion-btn" onclick="toggleAccordion(0)">
@@ -223,10 +113,104 @@
             <strong>Phone:</strong> +91-6283358509<br>
         </div>
     </div>
+    <div class="container" id="decorations-page" style="display:none;">
+        <div class="package-header-row" id="decor-header-row" style="display:none;">
+            <h2 style="margin:0;">Our Packages</h2>
+            <div class="dropdown-wrapper" id="decor-lang-wrapper"></div>
+        </div>
+        <div id="decorations-content"></div>
+    </div>
     <footer style="background:linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%); color:#fff; text-align:center; padding:16px 0; margin-top:40px; font-size:1rem; border-radius:0 0 12px 12px;">
         &copy; 2025 Unexpected Decoration, Chandigarh. All rights reserved.
     </footer>
     <script>
+        // Decorations content for all languages
+        const decorationsData = {
+            en: [
+                { title: "Balloon Decor", desc: "Vibrant balloon arrangements for birthdays, anniversaries, and more." },
+                { title: "Theme Setup", desc: "Custom themes for kids, romantic, corporate, and festive events." },
+                { title: "Flower Decor", desc: "Fresh flower arrangements for weddings, poojas, and special occasions." },
+                { title: "Backdrop & Lights", desc: "Stunning backdrops and lighting to make your event shine." }
+            ],
+            hi: [
+                { title: "गुब्बारा सजावट", desc: "जन्मदिन, सालगिरह आदि के लिए रंगीन गुब्बारा सजावट।" },
+                { title: "थीम सेटअप", desc: "बच्चों, रोमांटिक, कॉर्पोरेट और त्योहारों के लिए कस्टम थीम्स।" },
+                { title: "फूलों की सजावट", desc: "शादी, पूजा और खास मौकों के लिए ताजे फूलों की सजावट।" },
+                { title: "बैकड्रॉप और लाइट्स", desc: "आपके इवेंट को चमकाने के लिए शानदार बैकड्रॉप और लाइटिंग।" }
+            ],
+            pa: [
+                { title: "ਗੁੱਬਾਰੇ ਸਜਾਵਟ", desc: "ਜਨਮਦਿਨ, ਵਿਆਹ ਦੀਆਂ ਸਾਲਗਿਰ੍ਹਾਂ ਆਦਿ ਲਈ ਰੰਗ-ਬਿਰੰਗੀ ਗੁੱਬਾਰੇ ਸਜਾਵਟ।" },
+                { title: "ਥੀਮ ਸੈਟਅੱਪ", desc: "ਬੱਚਿਆਂ, ਰੋਮਾਂਟਿਕ, ਕਾਰਪੋਰੇਟ ਅਤੇ ਤਿਉਹਾਰਾਂ ਲਈ ਕਸਟਮ ਥੀਮ।" },
+                { title: "ਫੁੱਲਾਂ ਦੀ ਸਜਾਵਟ", desc: "ਵਿਆਹ, ਪੂਜਾ ਅਤੇ ਵਿਸ਼ੇਸ਼ ਮੌਕਿਆਂ ਲਈ ਤਾਜ਼ੇ ਫੁੱਲਾਂ ਦੀ ਸਜਾਵਟ।" },
+                { title: "ਬੈਕਡਰੌਪ ਅਤੇ ਲਾਈਟਾਂ", desc: "ਤੁਹਾਡੇ ਸਮਾਰੋਹ ਨੂੰ ਰੌਸ਼ਨ ਕਰਨ ਲਈ ਸ਼ਾਨਦਾਰ ਬੈਕਡਰੌਪ ਅਤੇ ਲਾਈਟਾਂ।" }
+            ]
+        };
+        function renderDecorations(lang) {
+            const data = decorationsData[lang] || decorationsData['en'];
+            let html = '<div style="padding: 40px 0;">';
+            html += `<h2 style="color:#ff7e5f; text-align:center;">${lang==='en'?'Decorations':(lang==='hi'?'सजावट':'ਸਜਾਵਟ')}</h2>`;
+            html += '<div class="decor-cards" style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-top: 32px;">';
+            data.forEach(card => {
+                html += `<div class=\"decor-card\" style=\"background: #fff3e6; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,126,95,0.10); width: 260px; padding: 28px 20px; text-align: center;\">`;
+                html += `<img src=\"logo.svg\" alt=\"${card.title}\" style=\"height:48px; margin-bottom: 16px; opacity:0.85;\">`;
+                html += `<h3 style=\"color:#ff7e5f; margin: 0 0 10px 0; font-size:1.2rem;\">${card.title}</h3>`;
+                html += `<p style=\"color:#444; font-size:1rem;\">${card.desc}</p>`;
+                html += `</div>`;
+            });
+            html += '</div></div>';
+            document.getElementById('decorations-content').innerHTML = html;
+        }
+        let decorationsLoaded = false;
+        let lastDecorationsLang = null;
+        // Move the language dropdown to the decorations tab header when needed
+        function moveLanguageDropdown(toDecor) {
+            var mainLang = document.getElementById('main-lang-wrapper');
+            var decorLang = document.getElementById('decor-lang-wrapper');
+            if (toDecor) {
+                if (decorLang && mainLang && mainLang.children.length > 0) {
+                    decorLang.appendChild(mainLang.children[0]);
+                    if (mainLang.children.length > 0) decorLang.appendChild(mainLang.children[0]);
+                }
+            } else {
+                if (mainLang && decorLang && decorLang.children.length > 0) {
+                    mainLang.appendChild(decorLang.children[0]);
+                    if (decorLang.children.length > 0) mainLang.appendChild(decorLang.children[0]);
+                }
+            }
+        }
+        // Helper to update decorations content language if needed
+        function updateDecorationsLanguage(lang) {
+            if (document.getElementById('decorations-page').style.display !== 'none') {
+                renderDecorations(lang);
+                lastDecorationsLang = lang;
+            }
+        }
+        function showPage(page) {
+            var navSurprises = document.getElementById('nav-surprises');
+            var navDecorations = document.getElementById('nav-decorations');
+            var surprisesPage = document.getElementById('surprises-page');
+            var decorationsPage = document.getElementById('decorations-page');
+            if (page === 'surprises') {
+                navSurprises.classList.add('nav-active');
+                navDecorations.classList.remove('nav-active');
+                surprisesPage.style.display = '';
+                decorationsPage.style.display = 'none';
+                document.getElementById('decor-header-row').style.display = 'none';
+                moveLanguageDropdown(false);
+            } else {
+                navSurprises.classList.remove('nav-active');
+                navDecorations.classList.add('nav-active');
+                surprisesPage.style.display = 'none';
+                decorationsPage.style.display = '';
+                document.getElementById('decor-header-row').style.display = 'flex';
+                moveLanguageDropdown(true);
+                // Render decorations content for the selected language
+                const lang = document.getElementById('language-select').value;
+                renderDecorations(lang);
+                decorationsLoaded = true;
+                lastDecorationsLang = lang;
+            }
+        }
         function toggleAccordion(idx) {
             var items = document.querySelectorAll('.accordion-content');
             var icons = document.querySelectorAll('.icon');
@@ -241,6 +225,69 @@
                 }
             }
         }
+
+        const translations = {
+            en: {
+                title: "Unexpected Decoration, Chandigarh",
+                tagline: "Beautiful decorations for every occasion",
+                packages: "Our Packages",
+                book: "Book Now",
+                phone: "Phone:",
+                acc: [
+                    { label: "Basic Surprise (₹2999/-)", items: ["Music Entry for surprise moment 🕺🏻.", "Normal Character Entry.", "Hamper (Arch Balloon Decor 🎈, cake 🎂, 4 small size photos 👫).", "Bouquet 💐."] },
+                    { label: "Standard Surprise (₹5499/-)", items: ["Music Entry with wishing dance.", "Heavy character Entry.", "2 Gun shots.", "Hamper (Arch Balloon Decor 🎈, cake 🎂, 8 small size photos 👫).", "Bouquet 💐.", "1 Photo Frame 🖼️.", "1 Small soft toy."] },
+                    { label: "Premium Celebration (₹7999/-)", items: ["Music Entry with wishing dance.", "2 Heavy character Entry.", "2 Gun shots.", "4 Parrow 🎇.", "Lightning Hamper (Arch Balloon Decor 🎈,  cake 🎂, 8 small size photos 👫, Chocolates 🍫).", "Bouquet 💐.", "1 Photo Frame 🖼️.", "1 Soft toy.", "1 Hidden gifts for Surprisor/loved once."] },
+                    { label: "Luxury Event (₹9999/-)", items: ["Music Entry with wishing dance.", "2 Heavy character Entry.", "2 Gun shots.", "4 Parrow 🎇.", "30 Sky shots 🎆.", "Lightning Hamper (Arch Balloon Decor 🎈,  cake 🎂, 8 small size photos 👫, Chocolates 🍫).", "Bouquet 💐.", "1 Photo Frame 🖼️.", "1 Soft toy.", "1 Hidden gifts for Surprisor/loved once."] }
+                ]
+            },
+            hi: {
+                title: "अनएक्सपेक्टेड डेकोरेशन, चंडीगढ़",
+                tagline: "हर मौके के लिए सुंदर सजावट",
+                packages: "हमारे पैकेज",
+                book: "बुक करें",
+                phone: "फ़ोन:",
+                acc: [
+                    { label: "बेसिक सरप्राइज (₹2999/-)", items: ["सरप्राइज मोमेंट के लिए म्यूजिक एंट्री 🕺🏻.", "नॉर्मल कैरेक्टर एंट्री.", "हैम्पर (आर्च बलून डेकोर 🎈, केक 🎂, 4 छोटे फोटो 👫).", "बुके 💐."] },
+                    { label: "स्टैंडर्ड सरप्राइज (₹5499/-)", items: ["विशिंग डांस के साथ म्यूजिक एंट्री.", "हेवी कैरेक्टर एंट्री.", "2 गन शॉट्स.", "हैम्पर (आर्च बलून डेकोर 🎈, केक 🎂, 8 छोटे फोटो 👫).", "बुके 💐.", "1 फोटो फ्रेम 🖼️.", "1 छोटा सॉफ्ट टॉय."] },
+                    { label: "प्रीमियम सेलिब्रेशन (₹7999/-)", items: ["विशिंग डांस के साथ म्यूजिक एंट्री.", "2 हेवी कैरेक्टर एंट्री.", "2 गन शॉट्स.", "4 पैरो 🎇.", "लाइटनिंग हैम्पर (आर्च बलून डेकोर 🎈, केक 🎂, 8 छोटे फोटो 👫, चॉकलेट्स 🍫).", "बुके 💐.", "1 फोटो फ्रेम 🖼️.", "1 सॉफ्ट टॉय.", "1 छुपा हुआ गिफ्ट."] },
+                    { label: "लक्ज़री इवेंट (₹9999/-)", items: ["विशिंग डांस के साथ म्यूजिक एंट्री.", "2 हेवी कैरेक्टर एंट्री.", "2 गन शॉट्स.", "4 पैरो 🎇.", "30 स्काई शॉट्स 🎆.", "लाइटनिंग हैम्पर (आर्च बलून डेकोर 🎈, केक 🎂, 8 छोटे फोटो 👫, चॉकलेट्स 🍫).", "बुके 💐.", "1 फोटो फ्रेम 🖼️.", "1 सॉफ्ट टॉय.", "1 छुपा हुआ गिफ्ट."] }
+                ]
+            },
+            pa: {
+                title: "ਅਣਉਮੀਦ ਸਜਾਵਟ, ਚੰਡੀਗੜ੍ਹ",
+                tagline: "ਹਰ ਮੌਕੇ ਲਈ ਸੁੰਦਰ ਸਜਾਵਟ",
+                packages: "ਸਾਡੇ ਪੈਕੇਜ",
+                book: "ਬੁੱਕ ਕਰੋ",
+                phone: "ਫ਼ੋਨ:",
+                acc: [
+                    { label: "ਬੇਸਿਕ ਸਰਪ੍ਰਾਈਜ਼ (₹2999/-)", items: ["ਸਰਪ੍ਰਾਈਜ਼ ਮੋਮੈਂਟ ਲਈ ਮਿਊਜ਼ਿਕ ਐਂਟਰੀ 🕺🏻.", "ਨਾਰਮਲ ਕਿਰਦਾਰ ਐਂਟਰੀ.", "ਹੈਂਪਰ (ਆਰਚ ਬਲੂਨ ਸਜਾਵਟ 🎈, ਕੇਕ 🎂, 4 ਛੋਟੇ ਫੋਟੋ 👫).", "ਬੁਕੇ 💐."] },
+                    { label: "ਸਟੈਂਡਰਡ ਸਰਪ੍ਰਾਈਜ਼ (₹5499/-)", items: ["ਵਿਸ਼ਿੰਗ ਡਾਂਸ ਨਾਲ ਮਿਊਜ਼ਿਕ ਐਂਟਰੀ.", "ਹੈਵੀ ਕਿਰਦਾਰ ਐਂਟਰੀ.", "2 ਗਨ ਸ਼ਾਟਸ.", "ਹੈਂਪਰ (ਆਰਚ ਬਲੂਨ ਸਜਾਵਟ 🎈, ਕੇਕ 🎂, 8 ਛੋਟੇ ਫੋਟੋ 👫).", "ਬੁਕੇ 💐.", "1 ਫੋਟੋ ਫਰੇਮ 🖼️.", "1 ਛੋਟਾ ਸਾਫਟ ਟੌਇ."] },
+                    { label: "ਪ੍ਰੀਮੀਅਮ ਸੈਲੀਬ੍ਰੇਸ਼ਨ (₹7999/-)", items: ["ਵਿਸ਼ਿੰਗ ਡਾਂਸ ਨਾਲ ਮਿਊਜ਼ਿਕ ਐਂਟਰੀ.", "2 ਹੈਵੀ ਕਿਰਦਾਰ ਐਂਟਰੀ.", "2 ਗਨ ਸ਼ਾਟਸ.", "4 ਪੈਰੋ 🎇.", "ਲਾਈਟਨਿੰਗ ਹੈਂਪਰ (ਆਰਚ ਬਲੂਨ ਸਜਾਵਟ 🎈, ਕੇਕ 🎂, 8 ਛੋਟੇ ਫੋਟੋ 👫, ਚਾਕਲੇਟਸ 🍫).", "ਬੁਕੇ 💐.", "1 ਫੋਟੋ ਫਰੇਮ 🖼️.", "1 ਸਾਫਟ ਟੌਇ.", "1 ਲੁਕਾਇਆ ਹੋਇਆ ਤੋਹਫਾ."] },
+                    { label: "ਲਗਜ਼ਰੀ ਇਵੈਂਟ (₹9999/-)", items: ["ਵਿਸ਼ਿੰਗ ਡਾਂਸ ਨਾਲ ਮਿਊਜ਼ਿਕ ਐਂਟਰੀ.", "2 ਹੈਵੀ ਕਿਰਦਾਰ ਐਂਟਰੀ.", "2 ਗਨ ਸ਼ਾਟਸ.", "4 ਪੈਰੋ 🎇.", "30 ਸਕਾਈ ਸ਼ਾਟਸ 🎆.", "ਲਾਈਟਨਿੰਗ ਹੈਂਪਰ (ਆਰਚ ਬਲੂਨ ਸਜਾਵਟ 🎈, ਕੇਕ 🎂, 8 ਛੋਟੇ ਫੋਟੋ 👫, ਚਾਕਲੇਟਸ 🍫).", "ਬੁਕੇ 💐.", "1 ਫੋਟੋ ਫਰੇਮ 🖼️.", "1 ਸਾਫਟ ਟੌਇ.", "1 ਲੁਕਾਇਆ ਹੋਇਆ ਤੋਹਫਾ."] }
+                ]
+            }
+        };
+
+        document.getElementById('language-select').addEventListener('change', function() {
+            const lang = this.value;
+            const t = translations[lang];
+            document.querySelector('h1').textContent = t.title;
+            document.querySelector('p').textContent = t.tagline;
+            document.querySelector('h2').textContent = t.packages;
+            document.querySelector('.contact-btn').childNodes[2].textContent = t.book;
+            document.querySelector('#contact-info strong').textContent = t.phone;
+            // Accordions
+            const accBtns = document.querySelectorAll('.accordion-btn');
+            const accContents = document.querySelectorAll('.accordion-content ul');
+            t.acc.forEach((acc, i) => {
+                accBtns[i].childNodes[0].textContent = acc.label + ' ';
+                accContents[i].innerHTML = acc.items.map(item => `<li>${item}</li>`).join('');
+            });
+            // Also update decorations content if visible
+            if (document.getElementById('decorations-page').style.display !== 'none') {
+                renderDecorations(lang);
+            }
+        });
     </script>
 </body>
 </html>
