@@ -68,7 +68,7 @@
             </div>
             <div class="accordion-item">
                 <button class="accordion-btn" onclick="toggleAccordion(2)">
-                    Premium Celebration (₹7999/-) <span class="icon" id="icon-2">&#9660;</span>
+                    Premium Surprise (₹7999/-) <span class="icon" id="icon-2">&#9660;</span>
                 </button>
                 <div class="accordion-content">
                     <ul>
@@ -86,7 +86,7 @@
             </div>
             <div class="accordion-item">
                 <button class="accordion-btn" onclick="toggleAccordion(3)">
-                    Luxury Event (₹9999/-) <span class="icon" id="icon-3">&#9660;</span>
+                    Luxury Surprise (₹9999/-) <span class="icon" id="icon-3">&#9660;</span>
                 </button>
                 <div class="accordion-content">
                     <ul>
@@ -116,7 +116,7 @@
     </div>
     <div class="container" id="decorations-page" style="display:none;">
         <div class="package-header-row" id="decor-header-row" style="display:none;">
-            <h2 style="margin:0;">Our Packages</h2>
+            <h2 style="margin:0;">Our Decorations</h2>
             <div class="dropdown-wrapper" id="decor-lang-wrapper"></div>
         </div>
         <div id="decorations-content"></div>
@@ -146,21 +146,328 @@
                 { title: "ਬੈਕਡਰੌਪ ਅਤੇ ਲਾਈਟਾਂ", desc: "ਤੁਹਾਡੇ ਸਮਾਰੋਹ ਨੂੰ ਰੌਸ਼ਨ ਕਰਨ ਲਈ ਸ਼ਾਨਦਾਰ ਬੈਕਡਰੌਪ ਅਤੇ ਲਾਈਟਾਂ।" }
             ]
         };
-        function renderDecorations(lang) {
-            const data = decorationsData[lang] || decorationsData['en'];
-            let html = '<div style="padding: 40px 0;">';
-            html += `<h2 style="color:#ff7e5f; text-align:center;">${lang==='en'?'Decorations':(lang==='hi'?'सजावट':'ਸਜਾਵਟ')}</h2>`;
-            html += '<div class="decor-cards" style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-top: 32px;">';
-            data.forEach(card => {
-                html += `<div class=\"decor-card\" style=\"background: #fff3e6; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,126,95,0.10); width: 260px; padding: 28px 20px; text-align: center;\">`;
-                html += `<img src=\"logo.svg\" alt=\"${card.title}\" style=\"height:48px; margin-bottom: 16px; opacity:0.85;\">`;
-                html += `<h3 style=\"color:#ff7e5f; margin: 0 0 10px 0; font-size:1.2rem;\">${card.title}</h3>`;
-                html += `<p style=\"color:#444; font-size:1rem;\">${card.desc}</p>`;
-                html += `</div>`;
+        function renderDecorations(lang = null) {
+            // Language selection
+            var language = lang || (document.getElementById('language-select') ? document.getElementById('language-select').value : 'en');
+            // Marquee text translations
+            var marqueeTexts = {
+                en: 'Our Decoration prices for rooms starting from 1999/- and for wall + ring starting from 2499/-',
+                hi: 'कमरों के लिए हमारी सजावट की कीमतें 1999/- से शुरू होती हैं और दीवार + रिंग के लिए 2499/- से शुरू होती हैं।',
+                pa: 'ਕਮਰਿਆਂ ਲਈ ਸਾਡੀ ਸਜਾਵਟ ਦੀਆਂ ਕੀਮਤਾਂ 1999/- ਤੋਂ ਸ਼ੁਰੂ ਹੁੰਦੀਆਂ ਹਨ ਅਤੇ ਕੰਧ + ਰਿੰਗ ਲਈ 2499/- ਤੋਂ ਸ਼ੁਰੂ ਹੁੰਦੀਆਂ ਹਨ।'
+            };
+            // Grouped decorations data: each group has a title and an array of images
+            var groupedDecorations = [
+                {
+                    titles: {
+                        en: 'Welcome Baby Decoration',
+                        hi: 'वेलकम बेबी डेकोरेशन',
+                        pa: 'ਵੇਲਕਮ ਬੇਬੀ ਸਜਾਵਟ'
+                    },
+                    images: [
+                        'images/welcomeBaby/welcomeBaby1.JPG',
+                        'images/welcomeBaby/welcomebaby2.JPG',
+                        'images/welcomeBaby/welcomeBaby3.JPG',
+                        'images/welcomeBaby/welcomeBaby4.JPG',
+                    ]
+                },
+                {
+                    titles: {
+                        en: 'Welcome to India Decoration',
+                        hi: 'वेलकम टू इंडिया डेकोरेशन',
+                        pa: 'ਇੰਡੀਆ ਆਉਣ ਤੇ ਸੁਆਗਤ ਸਜਾਵਟ'
+                    },
+                    images: [
+                        'images/welcomeIndia/w7.JPG',
+                        'images/welcomeIndia/w1.JPG',
+                        'images/welcomeIndia/w3.JPG',
+                        'images/welcomeIndia/w4.JPG',
+                        'images/welcomeIndia/w5.JPG',
+                        'images/welcomeIndia/w6.JPG',
+                        'images/welcomeIndia/w8.JPG',
+                        'images/welcomeIndia/w9.JPG'
+                    ]
+                },
+                {
+                    titles: {
+                        en: 'Birthday Decoration',
+                        hi: 'जन्मदिन डेकोरेशन',
+                        pa: 'ਜਨਮਦਿਨ ਸਜਾਵਟ'
+                    },
+                    images: [
+                        'images/happyBirthday/hb1.JPG',
+                        'images/happyBirthday/hb2.JPG',
+                        'images/happyBirthday/hb3.JPG',
+                        'images/happyBirthday/hb4.JPG',
+                        'images/happyBirthday/hb5.JPG',
+                        'images/happyBirthday/hb6.JPG',
+                        'images/happyBirthday/hb7.JPG',
+                        'images/happyBirthday/hb8.JPG'
+                    ]
+                },
+                {
+                    titles: {
+                        en: 'Baby Shower Decoration',
+                        hi: 'बेबी शॉवर डेकोरेशन',
+                        pa: 'ਬੇਬੀ ਸ਼ਾਵਰ ਸਜਾਵਟ'
+                    },
+                    images: [
+                        'images/babyShower/bb1.JPG',
+                        'images/babyShower/bb2.JPG',
+                    ]
+                },
+                {
+                    titles: {
+                        en: 'Anniversary Decoration',
+                        hi: 'सालगिरह डेकोरेशन',
+                        pa: 'ਐਨੀਵਰਸਰੀ ਸਜਾਵਟ'
+                    },
+                    images: [
+                        'images/Anniversary/a1.JPG',
+                        'images/Anniversary/a2.JPG'
+                    ]
+                },
+                {
+                    titles: {
+                        en: 'Bride to Be Decoration',
+                        hi: 'ब्राइड टू बी डेकोरेशन',
+                        pa: 'ਬਰਾਈਡ ਟੂ ਬੀ ਸਜਾਵਟ'
+                    },
+                    images: [
+                        'images/brideToBe/bTobe1.JPG',
+                        'images/brideToBe/bTobe2.jpg',
+                    ]
+                },
+                {
+                    titles: {
+                        en: 'First Night Decoration',
+                        hi: 'फर्स्ट नाइट डेकोरेशन',
+                        pa: 'ਫਰਸਟ ਨਾਈਟ ਸਜਾਵਟ'
+                    },
+                    images: [
+                        'images/firstNight/fNight1.JPG',
+                        'images/firstNight/fNight2.JPG',
+                        'images/firstNight/fNight3.JPG',
+                    ]
+                }
+            ];
+
+            var groupsHtml = '';
+            groupedDecorations.forEach(function(group, idx) {
+                var extraStyle = idx === 0 ? ' style="margin-top:10px"' : '';
+                groupsHtml += `<div class="decor-group"${extraStyle}>
+                    <div class="decor-group-title">${group.titles[language]}</div>
+                    <div class="decor-group-gallery">`;
+                group.images.forEach(function(img) {
+                    groupsHtml += `<div class="decor-group-img-wrap"><img src="${img}" alt="${group.titles[language]}" class="decor-img" onclick="previewImage(this)"></div>`;
+                });
+                groupsHtml += `</div></div>`;
             });
-            html += '</div></div>';
-            document.getElementById('decorations-content').innerHTML = html;
-        }
+
+            document.getElementById('decorations-content').innerHTML = `
+            <div class="decor-section">
+                <div class="decor-marquee-wrapper">
+                    <div id="decor-marquee-text" class="decor-marquee">
+                        ${marqueeTexts[language]}
+                    </div>
+                </div>
+                <div class="decor-groups-list">
+                    ${groupsHtml}
+                </div>
+                <button class="contact-btn" onclick="window.location.href='tel:+916283358509'" style="margin:32px auto 0 auto;display:block;">
+                    <span style="display:inline-block; vertical-align:middle; margin-right:5px; font-size:1.2em; color:#ff7e5f;">📞</span>
+                    ${translations[language] && translations[language].book ? translations[language].book : 'Book Now'}
+                </button>
+            </div>
+            <div id="img-modal" class="img-modal" style="display:none;">
+                <img class="img-modal-content" id="img-modal-img">
+            </div>
+            <style>
+            .decor-section {
+                padding: 40px 0 24px 0;
+            }
+            .decor-marquee-wrapper {
+                width: 100%;
+                margin-bottom: 18px;
+                background: #fff3e6;
+                border-radius: 10px;
+                box-shadow: 0 1px 6px rgba(255,126,95,0.08);
+                border: 1.5px dashed #ff7e5f;
+                overflow: hidden;
+            }
+            .decor-marquee {
+                color: #ff7e5f;
+                font-size: 1.08rem;
+                font-weight: 600;
+                padding: 8px 0;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+                width: 100%;
+                display: block;
+                transition: none;
+                text-align: center;
+                margin: 0 auto;
+            }
+            .decor-marquee.marquee-animate {
+                animation: marquee-scroll 12s linear infinite;
+            }
+            @keyframes marquee-scroll {
+                0% { transform: translateX(100%); }
+                100% { transform: translateX(-100%); }
+            }
+            .decor-groups-list {
+                display: flex;
+                flex-direction: column;
+                gap: 48px;
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 8px;
+            }
+            .decor-group-title {
+                color: #ff7e5f;
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 18px;
+                text-align: center;
+                padding-left: 0;
+                position: relative;
+                background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+                width: 100%;
+                display: block;
+            }
+            .decor-group-title::after {
+                content: '';
+                display: block;
+                margin: 10px auto 0 auto;
+                width: 60px;
+                max-width: 60%;
+                height: 3px;
+                border-radius: 2px;
+                background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
+                opacity: 0.85;
+                box-shadow: 0 2px 8px rgba(255,126,95,0.13);
+            }
+            .decor-group-gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 18px;
+            }
+            .decor-group-img-wrap {
+                background: #fff3e6;
+                border-radius: 14px;
+                box-shadow: 0 2px 12px rgba(255,126,95,0.13);
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .decor-img {
+                display: block;
+                width: 100%;
+                max-width: 220px;
+                aspect-ratio: 4/3;
+                object-fit: cover;
+                border-radius: 10px;
+                background: #fff;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                cursor: pointer;
+                transition: box-shadow 0.18s;
+                padding: 0;
+            }
+            .decor-img:hover {
+                box-shadow: 0 4px 16px rgba(255,126,95,0.22);
+            }
+            /* Modal styles */
+            .img-modal {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                z-index: 9999;
+                left: 0;
+                top: 0;
+                width: 100vw;
+                height: 100vh;
+                overflow: auto;
+                background: rgba(0,0,0,0.85);
+                animation: fadeIn 0.2s;
+            }
+            .img-modal-content {
+                margin: auto;
+                display: block;
+                max-width: 90vw;
+                max-height: 80vh;
+                border-radius: 16px;
+                box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+            }
+            @media (max-width: 900px) {
+                .decor-group-gallery {
+                    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                    gap: 14px;
+                }
+                .decor-group-title {
+                    font-size: 1.1rem;
+                }
+                .decor-group-img-wrap {
+                    padding: 5px;
+                }
+                .decor-img {
+                    max-width: 90vw;
+                }
+            }
+            @media (max-width: 600px) {
+                .decor-groups-list {
+                    gap: 32px;
+                }
+                .decor-group-title {
+                    font-size: 1rem;
+                    padding-left: 2px;
+                }
+                .decor-group-gallery {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 10px;
+                }
+                .decor-img {
+                    max-width: 80vw;
+                }
+                .img-modal-content {
+                    max-width: 98vw;
+                    max-height: 60vh;
+                }
+            }
+            @media (max-width: 400px) {
+                .img-modal-content {
+                    max-width: 99vw;
+                    max-height: 40vh;
+                }
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            </style>
+            `;
+}
+// Image preview modal logic
+function previewImage(imgElem) {
+    var modal = document.getElementById('img-modal');
+    var modalImg = document.getElementById('img-modal-img');
+    modal.style.display = 'flex';
+    modalImg.src = imgElem.src;
+    // Add event listener to close modal when clicking outside the image
+    modal.onclick = function(e) {
+        if (e.target === modal) closeImgModal();
+    };
+}
+function closeImgModal() {
+    var modal = document.getElementById('img-modal');
+    modal.style.display = 'none';
+    // Remove the click handler to avoid stacking listeners
+    modal.onclick = null;
+}
         let decorationsLoaded = false;
         let lastDecorationsLang = null;
         // Move the language dropdown to the decorations tab header when needed
@@ -205,11 +512,8 @@
                 decorationsPage.style.display = '';
                 document.getElementById('decor-header-row').style.display = 'flex';
                 moveLanguageDropdown(true);
-                // Render decorations content for the selected language
-                const lang = document.getElementById('language-select').value;
-                renderDecorations(lang);
-                decorationsLoaded = true;
-                lastDecorationsLang = lang;
+                // Render static decorations cards
+                renderDecorations();
             }
         }
         function toggleAccordion(idx) {
@@ -289,6 +593,57 @@
                 renderDecorations(lang);
             }
         });
+    </script>
+    <script>
+    // Improved marquee: scrolls full width, restarts only after text is fully out of view
+    (function() {
+        function updateMarquee() {
+            var marquee = document.getElementById('decor-marquee-text');
+            if (!marquee) return;
+            marquee.classList.remove('marquee-animate');
+            marquee.style.animation = '';
+            // Wait for DOM update
+            setTimeout(function() {
+                var parent = marquee.parentElement;
+                var textWidth = marquee.scrollWidth;
+                var parentWidth = parent.offsetWidth;
+                if (textWidth > parentWidth + 2) {
+                    // Calculate distance: textWidth + parentWidth
+                    var distance = textWidth + parentWidth;
+                    // Set animation duration proportional to distance (speed: 50px/sec, slower)
+                    var duration = distance / 50;
+                    // Set keyframes dynamically
+                    marquee.style.animation = `marquee-scroll-dyn ${duration}s linear infinite`;
+                    // Add keyframes if not present
+                    if (!document.getElementById('marquee-scroll-dyn-style')) {
+                        var style = document.createElement('style');
+                        style.id = 'marquee-scroll-dyn-style';
+                        style.innerHTML = `@keyframes marquee-scroll-dyn { 0% { transform: translateX(${parentWidth}px); } 100% { transform: translateX(-${textWidth}px); } }`;
+                        document.head.appendChild(style);
+                    } else {
+                        // Update keyframes if needed
+                        var style = document.getElementById('marquee-scroll-dyn-style');
+                        style.innerHTML = `@keyframes marquee-scroll-dyn { 0% { transform: translateX(${parentWidth}px); } 100% { transform: translateX(-${textWidth}px); } }`;
+                    }
+                } else {
+                    marquee.style.transform = '';
+                    marquee.style.textAlign = 'center';
+                }
+            }, 50);
+        }
+        // Run on decorations render
+        var origRenderDecorations = renderDecorations;
+        renderDecorations = function() {
+            origRenderDecorations.apply(this, arguments);
+            updateMarquee();
+        };
+        // Also run on window resize
+        window.addEventListener('resize', updateMarquee);
+        // Initial run if decorations already visible
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMarquee();
+        });
+    })();
     </script>
 </body>
 </html>

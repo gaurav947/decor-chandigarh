@@ -1,25 +1,101 @@
-<div style="padding: 40px 0;">
-    <h2 style="color:#ff7e5f; text-align:center;">Decorations</h2>
-    <div class="decor-cards" style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-top: 32px;">
-        <div class="decor-card" style="background: #fff3e6; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,126,95,0.10); width: 260px; padding: 28px 20px; text-align: center;">
-            <img src="logo.svg" alt="Balloon Decor" style="height:48px; margin-bottom: 16px; opacity:0.85;">
-            <h3 style="color:#ff7e5f; margin: 0 0 10px 0; font-size:1.2rem;">Balloon Decor</h3>
-            <p style="color:#444; font-size:1rem;">Vibrant balloon arrangements for birthdays, anniversaries, and more.</p>
+<div class="decor-section">
+    <h2 class="decor-title">Our Decorations</h2>
+    <div class="decor-cards-grid">
+        <div class="decor-card">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Balloon Decoration" class="decor-img">
+            <h3 class="decor-card-title">Balloon Decoration</h3>
         </div>
-        <div class="decor-card" style="background: #fff3e6; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,126,95,0.10); width: 260px; padding: 28px 20px; text-align: center;">
-            <img src="logo.svg" alt="Theme Setup" style="height:48px; margin-bottom: 16px; opacity:0.85;">
-            <h3 style="color:#ff7e5f; margin: 0 0 10px 0; font-size:1.2rem;">Theme Setup</h3>
-            <p style="color:#444; font-size:1rem;">Custom themes for kids, romantic, corporate, and festive events.</p>
+        <div class="decor-card">
+            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Flower Decoration" class="decor-img">
+            <h3 class="decor-card-title">Flower Decoration</h3>
         </div>
-        <div class="decor-card" style="background: #fff3e6; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,126,95,0.10); width: 260px; padding: 28px 20px; text-align: center;">
-            <img src="logo.svg" alt="Flower Decor" style="height:48px; margin-bottom: 16px; opacity:0.85;">
-            <h3 style="color:#ff7e5f; margin: 0 0 10px 0; font-size:1.2rem;">Flower Decor</h3>
-            <p style="color:#444; font-size:1rem;">Fresh flower arrangements for weddings, poojas, and special occasions.</p>
+        <div class="decor-card">
+            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Theme Setup" class="decor-img">
+            <h3 class="decor-card-title">Theme Setup</h3>
         </div>
-        <div class="decor-card" style="background: #fff3e6; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,126,95,0.10); width: 260px; padding: 28px 20px; text-align: center;">
-            <img src="logo.svg" alt="Backdrop & Lights" style="height:48px; margin-bottom: 16px; opacity:0.85;">
-            <h3 style="color:#ff7e5f; margin: 0 0 10px 0; font-size:1.2rem;">Backdrop & Lights</h3>
-            <p style="color:#444; font-size:1rem;">Stunning backdrops and lighting to make your event shine.</p>
+        <div class="decor-card">
+            <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=400&q=80" alt="Backdrop & Lights" class="decor-img">
+            <h3 class="decor-card-title">Backdrop & Lights</h3>
+        </div>
+        <div class="decor-card">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Candle Light Dinner" class="decor-img">
+            <h3 class="decor-card-title">Candle Light Dinner</h3>
+        </div>
+        <div class="decor-card">
+            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Kids Party Decor" class="decor-img">
+            <h3 class="decor-card-title">Kids Party Decor</h3>
+        </div>
+        <div class="decor-card">
+            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Custom Decoration" class="decor-img">
+            <h3 class="decor-card-title">Custom Decoration</h3>
         </div>
     </div>
 </div>
+<style>
+.decor-section {
+    padding: 40px 0 24px 0;
+}
+.decor-title {
+    color: #ff7e5f;
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.decor-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+.decor-card {
+    background: #fff3e6;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(255,126,95,0.10);
+    padding: 24px 16px 18px 16px;
+    text-align: center;
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.decor-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 6px 18px rgba(255,126,95,0.18);
+}
+.decor-img {
+    width: 100%;
+    max-width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.decor-card-title {
+    color: #ff7e5f;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+@media (max-width: 600px) {
+    .decor-title {
+        font-size: 1.3rem;
+    }
+    .decor-cards-grid {
+        gap: 16px;
+        padding: 0 4px;
+    }
+    .decor-card {
+        padding: 14px 6px 12px 6px;
+    }
+    .decor-img {
+        max-width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+}
+</style>
